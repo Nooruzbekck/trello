@@ -1,10 +1,11 @@
-import { Login } from "./components/auth/Login";
-import { Button } from "./components/UI/Button";
+import { LoginPage } from "./pages/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage";
 
 function App() {
   return (
     <div>
-      <Login />
+      {/* <LoginPage /> */}
+      <RegisterPage />
     </div>
   );
 }
