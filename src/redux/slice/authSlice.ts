@@ -8,7 +8,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  role: "",
+  role: "GUEST",
   data: {},
 };
 

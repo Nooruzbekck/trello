@@ -9,6 +9,7 @@ import { validationLogin } from "../../utils/general/validation";
 import { postLoginThunk } from "../../redux/thunks/authThunk";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -74,7 +75,7 @@ export const Login = () => {
 
         <NavigationWrapper>
           <a href="/">Не удается войти в систему?</a>
-          <a href="/">Создать аккаунт</a>
+          <Link to="/sign-up">Создать аккаунт</Link>
         </NavigationWrapper>
       </ContainerSecond>
     </Form>
