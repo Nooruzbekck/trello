@@ -3,7 +3,7 @@ import { Button as MuiButton, styled } from "@mui/material";
 
 interface PROPS {
   children: React.ReactNode;
-  type: "button" | "submit" | "reset";
+  type?: "button" | "submit" | "reset";
   onClick?: () => void;
   background?: string;
   variant?: "contained" | "outlined";
@@ -60,7 +60,7 @@ const getButtonVariant = (
 
 export const Button: React.FC<PROPS> = ({
   children,
-  type,
+  type = "button",
   onClick,
   background = "default",
   variant = "contained",

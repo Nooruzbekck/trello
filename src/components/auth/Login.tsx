@@ -1,25 +1,68 @@
-import React, { useState } from "react";
+import React from "react";
 import { Input } from "../UI/Input";
 import { styled } from "@mui/material";
 import { Button } from "../UI/Button";
 import { IconButton } from "../UI/IconButton";
 import { Icons, LogoTrello } from "../../assets";
+import { useFormik } from "formik";
+import { validationLogin } from "../../utils/general/validation";
+import { postLoginThunk } from "../../redux/thunks/authThunk";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux";
 
 export const Login = () => {
-  const [userEmail, setUserEmail] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+
+    validationSchema: validationLogin,
+
+    onSubmit: (values) => {
+      dispatch(postLoginThunk(values));
+    },
+  });
+
   return (
-    <Form>
+    <Form onSubmit={formik.handleSubmit}>
       <ContianerLogo>
-        <ImageLogo src={LogoTrello} alt="" />
+        <ImageLogo src={LogoTrello} alt="Trello Logo" />
         <Title>Войдите, чтобы продолжить</Title>
       </ContianerLogo>
-      <Input
-        type="email"
-        placeholder="Введите адрес электронной почты"
-        onChange={(e) => setUserEmail(e.target.value)}
-        value={userEmail}
-      />
-      <Button type="button">Продолжить</Button>
+
+      <WrapperInput>
+        <Input
+          type="email"
+          placeholder="Введите адрес электронной почты"
+          name="email"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.email}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+        />
+        <ErrorMessage>
+          {formik.errors.email && formik.errors.email}
+        </ErrorMessage>
+      </WrapperInput>
+
+      <WrapperInput>
+        <Input
+          type="password"
+          placeholder="Введите пароль"
+          name="password"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.password}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+        />
+        <ErrorMessage>
+          {formik.errors.email && formik.errors.email}
+        </ErrorMessage>
+      </WrapperInput>
+
+      <Button type="submit">Продолжить</Button>
 
       <ContainerSecond>
         <OrText>Или продолжить с помощью:</OrText>
@@ -68,6 +111,20 @@ const Title = styled("p")({
   fontWeight: "600",
   color: "#172b4d",
   marginTop: "15px",
+});
+
+const WrapperInput = styled("div")({
+  position: "relative",
+});
+
+const ErrorMessage = styled("p")({
+  color: "red",
+  fontSize: "12px",
+  fontWeight: "400",
+
+  position: "absolute",
+  bottom: "-18px",
+  left: "10px",
 });
 
 const ImageLogo = styled("img")({

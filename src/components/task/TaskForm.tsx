@@ -5,7 +5,6 @@ export const TaskForm = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleAddTask = () => {
-    console.log("Задача добавлена");
     setIsOpen(false);
   };
 
@@ -24,7 +23,9 @@ export const TaskForm = () => {
           </Button>
         </form>
       ) : (
-        <Button onClick={() => setIsOpen(true)}>Добавить список</Button>
+        <Button type="button" onClick={() => setIsOpen(true)}>
+          Добавить список
+        </Button>
       )}
     </div>
   );
