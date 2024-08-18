@@ -1,5 +1,7 @@
 export interface LoginData {
-  email: string;
-  password: string;
+  data: {
+    email: string;
+    password: string;
+  };
   role?: string;
 }
