@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
 import {
@@ -16,71 +16,64 @@ import { AdminRoutes } from "./AdminRoutes";
 export const AppRoutes = () => {
   const { role } = useSelector((state: RootState) => state.auth);
 
-  const pathsByRole = useMemo(
-    () => ({
-      ADMIN: "/admin",
-      USER: "/user",
-      GUEST: "/sign-in",
-    }),
-    []
-  );
+  const pathsByRole = {
+    ADMIN: "/admin",
+    USER: "/user",
+    GUEST: "/sign-in",
+  };
 
-  const routes = useMemo(
-    () =>
-      createBrowserRouter([
-        {
-          path: "/",
-          element: <Navigate to="user" replace />,
-        },
-        {
-          path: "/user",
-          element: (
-            <PrivateAuthRoute
-              Component={<MainLayout />}
-              fallBackPath={pathsByRole[role]}
-              isAuthorized={role === "USER"}
-            />
-          ),
-          children: UserRoutes(role) || [],
-        },
-        {
-          path: "/admin",
-          element: (
-            <PrivateAuthRoute
-              Component={<MainLayout />}
-              fallBackPath={pathsByRole[role]}
-              isAuthorized={role === "ADMIN"}
-            />
-          ),
-          children: AdminRoutes(role) || [],
-        },
-        {
-          path: "/sign-up",
-          element: (
-            <PrivateAuthRoute
-              Component={<RegisterPage />}
-              fallBackPath={pathsByRole[role]}
-              isAuthorized={role === "GUEST"}
-            />
-          ),
-        },
-        {
-          path: "/sign-in",
-          element: (
-            <PrivateAuthRoute
-              Component={<LoginPage />}
-              fallBackPath={pathsByRole[role]}
-              isAuthorized={role === "GUEST"}
-            />
-          ),
-        },
-        {
-          path: "*",
-          element: <h1>Not Found</h1>,
-        },
-      ]),
-    [role]
-  );
+  const routes = createBrowserRouter([
+    {
+      path: "/",
+      element: <Navigate to="user" replace />,
+    },
+    {
+      path: "/user",
+      element: (
+        <PrivateAuthRoute
+          Component={<MainLayout />}
+          fallBackPath={pathsByRole[role]}
+          isAuthorized={role === "USER"}
+        />
+      ),
+      children: UserRoutes(role),
+    },
+    {
+      path: "/admin",
+      element: (
+        <PrivateAuthRoute
+          Component={<MainLayout />}
+          fallBackPath={pathsByRole[role]}
+          isAuthorized={role === "ADMIN"}
+        />
+      ),
+      children: AdminRoutes(role),
+    },
+    {
+      path: "/sign-up",
+      element: (
+        <PrivateAuthRoute
+          Component={<RegisterPage />}
+          fallBackPath={pathsByRole[role]}
+          isAuthorized={role === "GUEST"}
+        />
+      ),
+    },
+    {
+      path: "/sign-in",
+      element: (
+        <PrivateAuthRoute
+          Component={<LoginPage />}
+          fallBackPath={pathsByRole[role]}
+          isAuthorized={role === "GUEST"}
+        />
+      ),
+    },
+    {
+      path: "*",
+      element: <h1>Not Found</h1>,
+    },
+  ]);
 
   return <RouterProvider router={routes} />;
 };
