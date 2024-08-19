@@ -5,3 +5,14 @@ export interface LoginData {
   };
   role?: string;
 }
+
+export interface Task {
+  title: string;
+  id: string;
+  columns: any[];
+}
+
+export interface Column {
+  columnId: string;
+  columnTitle: string;
+}

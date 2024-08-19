@@ -7,7 +7,9 @@ export const MainLayout = () => {
   return (
     <Wrapper>
       <Header />
-      <Outlet />
+      <Main>
+        <Outlet />
+      </Main>
     </Wrapper>
   );
 };
@@ -21,4 +23,8 @@ const Wrapper = styled("div")({
   minHeight: "100vh",
   display: "flex",
   flexDirection: "column",
+});
+
+const Main = styled("main")({
+  marginTop: "58px",
 });

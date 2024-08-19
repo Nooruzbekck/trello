@@ -22,20 +22,6 @@ const getButtonVariant = (
         border: "1px solid #8D949E",
         fontSize: "14px",
         fontWeight: "500",
-        // ":hover": {
-        //   background: "#612386",
-        //   color: "#FFFFFF",
-        //   border: "none",
-        // },
-        // ":active": {
-        //   background: "#AB62D8",
-        //   color: "#FFFFFF",
-        //   border: "none",
-        // },
-        // ":disabled": {
-        //   border: "1px solid #1C1B1F1F",
-        //   color: "#1C1B1F1F",
-        // },
       };
     case "contained":
     default:

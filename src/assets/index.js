@@ -15,6 +15,9 @@ import SearchIcon from "./icons/search-icon.svg?react";
 import PlusIcon from "./icons/plus-icon.svg?react";
 import QuestionIcon from "./icons/question-icon.svg?react";
 import NotificationIcon from "./icons/notification-icon.svg?react";
+import CloseIcon from "./icons/close-icon.svg?react";
+import OptionsIcon from "./icons/options-icon.svg?react";
+import SampleIcon from "./icons/sample-icon.svg?react";
 
 export const Icons = {
   GoogleIcon,
@@ -29,4 +32,7 @@ export const Icons = {
   PlusIcon,
   QuestionIcon,
   NotificationIcon,
+  CloseIcon,
+  OptionsIcon,
+  SampleIcon,
 };

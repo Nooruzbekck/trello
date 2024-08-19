@@ -25,10 +25,10 @@ export const AppRoutes = () => {
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: <Navigate to="user" replace />,
+      element: <Navigate to="/boards" replace />,
     },
     {
-      path: "/user",
+      path: "/boards",
       element: (
         <PrivateAuthRoute
           Component={<MainLayout />}

@@ -12,9 +12,11 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { tasksSlice } from "./slice/tasksSlice";
 
 const rootReducer = combineReducers({
   auth: authSlice.reducer,
+  tasks: tasksSlice.reducer,
 });
 
 const persistConfig = {
@@ -35,9 +37,7 @@ export const store = configureStore({
     }),
 });
 
-// Persistor object for the store
 export const persistor = persistStore(store);
 
-// Type definitions for dispatch and state
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

@@ -98,7 +98,7 @@ export const Header = () => {
         <StyledIconButton>
           <IconButton onClick={handleOpenUserMenu}>
             <StyledAvatar
-              alt={data.data.email?.[0]}
+              alt={data.data.email?.[0].toUpperCase()}
               src="/static/images/avatar/2.jpg"
             />
           </IconButton>
@@ -133,6 +133,10 @@ const StyledHeader = styled("header")({
   background: "#1d2125",
   boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.05)",
   padding: "0 20px",
+
+  position: "fixed",
+  top: "0",
+  left: "0",
 
   svg: {
     width: "25px",

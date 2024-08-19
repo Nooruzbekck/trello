@@ -1,6 +1,7 @@
 import React from "react";
 import { PrivateAuthRouteByRole } from "./private/PrivateAuthRouteByRole";
-import { RouteObject } from "react-router-dom";
+import { Navigate, RouteObject } from "react-router-dom";
+import { Tasks } from "../components/tasks/Tasks";
 
 export const UserRoutes = (role: string): RouteObject[] => {
   if (role !== "USER") {
@@ -9,7 +10,7 @@ export const UserRoutes = (role: string): RouteObject[] => {
 
   return [
     {
-      path: "/user",
+      path: "boards",
       element: (
         <PrivateAuthRouteByRole
           role={role}
@@ -20,13 +21,13 @@ export const UserRoutes = (role: string): RouteObject[] => {
       ),
     },
     {
-      path: "task",
+      path: "tasks",
       element: (
         <PrivateAuthRouteByRole
           role={role}
           roles={["USER"]}
           fallBackPath="/sign-in"
-          RouteComponent={<h1>USER</h1>}
+          RouteComponent={<Tasks />}
         />
       ),
     },

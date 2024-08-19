@@ -27,6 +27,8 @@ const StyledButton = styled((props: ButtonProps) => <MuiButton {...props} />)({
   fontWeight: "700",
   display: "flex",
   alignItems: "center",
+  textTransform: "initial",
+
   svg: {
     width: "20px",
     height: "20px",

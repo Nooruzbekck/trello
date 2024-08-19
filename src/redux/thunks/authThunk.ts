@@ -1,9 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { LoginData } from "../../types/auth";
+
+export interface Data {
+  email: string;
+  password: string;
+  role?: string;
+}
 
 export const postLoginThunk = createAsyncThunk(
   "auth/postLogin",
-  async (data: LoginData) => {
+  async (data: Data) => {
     const newData = {
       ...data,
     };
@@ -31,7 +36,7 @@ export const postLoginThunk = createAsyncThunk(
 
 export const postRegisterThunk = createAsyncThunk(
   "auth/postRegister",
-  async (data: LoginData) => {
+  async (data: Data) => {
     const newData = {
       ...data,
     };
